@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
  
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 public enum ConceptType {
 	
 	ONE(10001,"CONCEPTTYPE1","CONCEPTTYPE1"),

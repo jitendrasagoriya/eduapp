@@ -5,6 +5,11 @@ import org.springframework.stereotype.Repository;
 
 import com.jitendra.eduapp.domin.Chapter;
 
+
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Repository(value="chapter")
 public interface ChapterRepositroy extends JpaRepository<Chapter, Long> {
 

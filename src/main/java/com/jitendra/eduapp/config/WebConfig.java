@@ -10,6 +10,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import com.jitendra.eduapp.interceptor.AuthenticatorInterceptor;
 
+/**
+ * @author jitendra sagoriya
+ *
+ */
 
 @Configuration
 @EnableWebMvc

@@ -9,7 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.jitendra.eduapp.dao.NativeQueryDaoService;
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Service
 public class NativeQueryDaoServiceImpl implements NativeQueryDaoService {
 	

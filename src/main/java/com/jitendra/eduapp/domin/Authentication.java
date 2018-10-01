@@ -8,7 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Entity
 @Table(name="AUTHENTICATION")
 public class Authentication implements Serializable { 

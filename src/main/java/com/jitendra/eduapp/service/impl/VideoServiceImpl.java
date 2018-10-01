@@ -14,7 +14,10 @@ import com.jitendra.eduapp.domin.Video;
 import com.jitendra.eduapp.service.NativeQueryService;
 import com.jitendra.eduapp.service.VideoService;
 
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Service
 public class VideoServiceImpl implements VideoService {
 	
@@ -75,6 +78,11 @@ public class VideoServiceImpl implements VideoService {
 	@Override
 	public Video update(Video video) {
 		return daoService.getRepository().save(video);
+	}
+
+	@Override
+	public Page<Video> getAllByChapter(Long id, Pageable pageable) {
+		return daoService.getAllByChapter(id, pageable);
 	}
 
 }

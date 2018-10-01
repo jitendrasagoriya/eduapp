@@ -12,11 +12,12 @@ import org.springframework.stereotype.Service;
 
 import com.jitendra.eduapp.dao.ChapterDaoService;
 import com.jitendra.eduapp.domin.Chapter;
-import com.jitendra.eduapp.domin.Video;
 import com.jitendra.eduapp.service.ChapterService;
-import com.jitendra.eduapp.service.CommenService;
 
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Service
 public class ChapterServiceImpl implements ChapterService {
 	
@@ -24,9 +25,6 @@ public class ChapterServiceImpl implements ChapterService {
 	
 	@Autowired
 	private ChapterDaoService  daoService;
-	
-	@Autowired
-	private CommenService commenService;
 
 	@Override
 	public Page<Chapter> getAll(Pageable pageable) {
@@ -40,9 +38,7 @@ public class ChapterServiceImpl implements ChapterService {
 
 	@Override
 	public Chapter getById(Long id) {
-		Chapter chapter = daoService.getRepository().getOne(id);
-		List<Video> videos = commenService.getVideoByChapterId(chapter.getId());
-		chapter.setComments(videos);
+		Chapter chapter = daoService.getRepository().getOne(id);		 
 		return chapter;
 	}
 

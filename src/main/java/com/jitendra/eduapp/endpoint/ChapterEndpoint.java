@@ -20,6 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jitendra.eduapp.domin.Chapter;
 import com.jitendra.eduapp.service.ChapterService;
 
+
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping(path = "/api/chapter/",produces= {MediaType.APPLICATION_JSON_VALUE})

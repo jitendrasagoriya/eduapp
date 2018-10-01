@@ -6,13 +6,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.jitendra.eduapp.domin.Subject;
 import com.jitendra.eduapp.domin.Video;
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Service
 public interface VideoService {
 
 	public Page<Video> getAll(Pageable pageable);
+	
+	public Page<Video> getAllByChapter(Long id,Pageable pageable);
 
 	public List<Video> getAll();
 

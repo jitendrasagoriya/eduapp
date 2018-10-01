@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jitendra.eduapp.domin.Video;
-import com.jitendra.eduapp.service.VideoService;
+import com.jitendra.eduapp.domin.Concept;
+import com.jitendra.eduapp.service.ConceptService;
 
 
 /**
@@ -27,26 +27,26 @@ import com.jitendra.eduapp.service.VideoService;
  */
 @CrossOrigin(maxAge = 3600)
 @RestController
-@RequestMapping(path = "/api/video/")
-public class VideoEndpoint {
+@RequestMapping(path = "/api/concept/")
+public class ConceptEndpoint {
 	
 	@Autowired
-	private VideoService videoService; 
+	private ConceptService conceptService; 
 
 	@GetMapping("{id}")
 	public ResponseEntity<?> get(@PathVariable("id") Long id) {
-		Video video = videoService.getById(id);
-		if (video == null) {
+		Concept concept = conceptService.getById(id);
+		if (concept == null) {
 			return new ResponseEntity<String>("No such element found", HttpStatus.OK);
 		} else {			
-			return new ResponseEntity< >(video, HttpStatus.OK);
+			return new ResponseEntity< >(concept, HttpStatus.OK);
 		}
 	}
 	
 
 	@GetMapping("/chapter/{id}")
 	public ResponseEntity<?> getByChapterId(@PathVariable("id") Long id,Pageable pageable) {
-		Page<Video> video = videoService.getAllByChapter(id, pageable);
+		Page<Concept> video = conceptService.getAllByChapter(id, pageable);
 		if (video == null || !video.hasContent()) {
 			return new ResponseEntity<String>("No such video found for chapter : "+id, HttpStatus.OK);
 		} else {			
@@ -56,17 +56,17 @@ public class VideoEndpoint {
 
 	@GetMapping
 	public ResponseEntity<?> getAll(Pageable pageable) {
-		return new ResponseEntity<>(videoService.getAll(pageable), HttpStatus.OK);
+		return new ResponseEntity<>(conceptService.getAll(pageable), HttpStatus.OK);
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> add(@RequestBody @Valid Video video) {
-		return new ResponseEntity<>(videoService.save(video), HttpStatus.OK);
+	public ResponseEntity<?> add(@RequestBody @Valid Concept concept) {
+		return new ResponseEntity<>(conceptService.save(concept), HttpStatus.OK);
 	}
 	
 	@PutMapping
-	public ResponseEntity<?> update(@RequestBody @Valid Video video) {
-		return new ResponseEntity<>(videoService.save(video), HttpStatus.OK);
+	public ResponseEntity<?> update(@RequestBody @Valid Concept concept) {
+		return new ResponseEntity<>(conceptService.save(concept), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("{id}")

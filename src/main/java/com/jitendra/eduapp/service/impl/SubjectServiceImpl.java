@@ -14,7 +14,10 @@ import com.jitendra.eduapp.dao.SubjectDaoService;
 import com.jitendra.eduapp.domin.Subject;
 import com.jitendra.eduapp.service.SubjectService;
 
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Service
 public class SubjectServiceImpl implements SubjectService {
 	

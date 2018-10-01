@@ -5,7 +5,10 @@ import org.springframework.stereotype.Service;
 
 import com.jitendra.eduapp.dao.SubjectDaoService;
 import com.jitendra.eduapp.repository.SubjectRepository;
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 
 @Service
 public class SubjectDaoServiceImpl implements SubjectDaoService {

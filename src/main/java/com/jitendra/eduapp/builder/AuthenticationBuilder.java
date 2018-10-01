@@ -2,6 +2,10 @@ package com.jitendra.eduapp.builder;
 
 import com.jitendra.eduapp.domin.Authentication;
 
+/**
+ * @author jitendra sagoriya
+ *
+ */
 public class AuthenticationBuilder {
 	
 	private Authentication authentication;

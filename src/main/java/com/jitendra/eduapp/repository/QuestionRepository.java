@@ -4,7 +4,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.jitendra.eduapp.domin.Question;
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Repository(value="question")
 public interface QuestionRepository   extends JpaRepository<Question, Long> {
 

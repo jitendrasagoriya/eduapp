@@ -9,7 +9,10 @@ import com.jitendra.eduapp.dao.CommenDaoService;
 import com.jitendra.eduapp.domin.Video;
 import com.jitendra.eduapp.service.CommenService;
 
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Service
 public class CommenServiceImpl implements CommenService {
 	

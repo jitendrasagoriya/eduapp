@@ -12,7 +12,10 @@ import javax.validation.constraints.NotNull;
 
 import com.jitendra.eduapp.enums.ConceptType;
 
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Entity
 @Table(name="CONCEPT")
 public class Concept implements Serializable {
@@ -21,7 +24,7 @@ public class Concept implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column(name="NAME",length=25,nullable=false,unique=true)
 	@NotNull(message="Subject should not be null.")
@@ -31,24 +34,42 @@ public class Concept implements Serializable {
 	@NotNull(message="Defination should not be null.")
 	private String defination;
 	
-	@Column(name="TYPE",length=25,nullable=false,unique=true)
+	@Column(name="TYPE",length=25,nullable=false)
 	private ConceptType type;
 	
 	@Column
 	@NotNull(message="chapterId should not be null.")
 	private Long chapterId;
+	
+	
+
+	public Concept() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public Concept(Long id,  String name, ConceptType type,
+			 Long chapterId) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.chapterId = chapterId;
+	}
+
 
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

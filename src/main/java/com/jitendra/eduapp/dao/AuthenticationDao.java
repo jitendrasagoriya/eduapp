@@ -5,6 +5,10 @@ import org.springframework.stereotype.Service;
 import com.jitendra.eduapp.domin.Authentication;
 import com.jitendra.eduapp.repository.AuthenticationRepository;
 
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Service
 public interface AuthenticationDao {
 	

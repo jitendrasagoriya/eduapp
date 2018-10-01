@@ -11,7 +11,10 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Entity
 @Table(name="VIDEO")
 public class Video implements Serializable {

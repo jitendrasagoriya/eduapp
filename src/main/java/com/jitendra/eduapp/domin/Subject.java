@@ -7,7 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Entity
 @Table(name="SUBJECT")
 public class Subject {

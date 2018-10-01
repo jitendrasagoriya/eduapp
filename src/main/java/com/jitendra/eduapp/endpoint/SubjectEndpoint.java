@@ -19,6 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jitendra.eduapp.domin.Subject;
 import com.jitendra.eduapp.service.SubjectService;
 
+
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping(path = "/api/subject/")

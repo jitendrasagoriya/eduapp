@@ -7,6 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import com.jitendra.eduapp.domin.Authentication;
 
+
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Repository(value = "authentication")
 public interface AuthenticationRepository extends JpaRepository<Authentication, String> {
 

@@ -1,0 +1,6 @@
+2018-10-01 22:45:12 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'TYPE' (CONCEPT: TYPE INTEGER NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."CONCEPT"("ID","CHAPTER_ID","DEFINATION","NAME","TYPE")VALUES(?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5) [22018-197]
+2018-10-01 22:45:12 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'TYPE' (CONCEPT: TYPE INTEGER NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."CONCEPT"("ID","CHAPTER_ID","DEFINATION","NAME","TYPE")VALUES(?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5) [22018-197]

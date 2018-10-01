@@ -1,7 +1,13 @@
 package com.jitendra.eduapp.dao;
 
-import com.jitendra.eduapp.repository.QuestionRepository;
+import org.springframework.stereotype.Service;
 
+import com.jitendra.eduapp.repository.QuestionRepository;
+/**
+ * @author jitendra sagoriya
+ *
+ */
+@Service
 public interface QuestionDaoService extends BaseDaoService<QuestionRepository> {
 
 }

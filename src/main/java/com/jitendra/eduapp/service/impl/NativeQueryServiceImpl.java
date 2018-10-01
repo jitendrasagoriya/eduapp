@@ -5,7 +5,10 @@ import org.springframework.stereotype.Service;
 
 import com.jitendra.eduapp.dao.NativeQueryDaoService;
 import com.jitendra.eduapp.service.NativeQueryService;
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Service
 public class NativeQueryServiceImpl implements NativeQueryService {
 	

@@ -13,7 +13,10 @@ import javax.validation.constraints.NotNull;
 import com.jitendra.eduapp.enums.Difficuly;
 import com.jitendra.eduapp.enums.QuestionStatus;
 import com.jitendra.eduapp.enums.QuestionType;
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Entity
 @Table(name="QUESTION")
 public class Question implements Serializable {
@@ -29,8 +32,7 @@ private static final long serialVersionUID = 1L;
 	private String question;
 	
 	@Column(name="ANSWER",nullable=false )
-	private String answer;
-	
+	private String answer; 
 	
 	@Column(name="TYPE",nullable=false )
 	@NotNull(message="Please provide type of question")

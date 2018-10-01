@@ -7,7 +7,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jitendra.eduapp.domin.Subject;
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Service
 public interface SubjectService {
 	

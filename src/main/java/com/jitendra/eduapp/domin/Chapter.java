@@ -11,7 +11,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Entity
 @Table(name="CHAPTER")  
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  
