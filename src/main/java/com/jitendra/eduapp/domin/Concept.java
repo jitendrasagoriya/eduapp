@@ -33,6 +33,10 @@ public class Concept implements Serializable {
 	
 	@Column(name="TYPE",length=25,nullable=false,unique=true)
 	private ConceptType type;
+	
+	@Column
+	@NotNull(message="chapterId should not be null.")
+	private Long chapterId;
 
 	/**
 	 * @return the id
@@ -90,13 +94,20 @@ public class Concept implements Serializable {
 		this.type = type;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+	
+	public Long getChapterId() {
+		return chapterId;
+	}
+
+	public void setChapterId(Long chapterId) {
+		this.chapterId = chapterId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((chapterId == null) ? 0 : chapterId.hashCode());
 		result = prime * result + ((defination == null) ? 0 : defination.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -104,9 +115,6 @@ public class Concept implements Serializable {
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -116,6 +124,11 @@ public class Concept implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Concept other = (Concept) obj;
+		if (chapterId == null) {
+			if (other.chapterId != null)
+				return false;
+		} else if (!chapterId.equals(other.chapterId))
+			return false;
 		if (defination == null) {
 			if (other.defination != null)
 				return false;
@@ -133,12 +146,10 @@ public class Concept implements Serializable {
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "Concept [id=" + id + ", name=" + name + ", defination=" + defination + ", type=" + type + "]";
+		return "Concept [id=" + id + ", name=" + name + ", defination=" + defination + ", type=" + type + ", chapterId="
+				+ chapterId + "]";
 	}
 	
 	

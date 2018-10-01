@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 
@@ -22,7 +23,7 @@ public class Video implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column(name="NAME",length=150,nullable=false,unique=true)
 	@NotNull(message="name should not be null.")
@@ -36,11 +37,34 @@ public class Video implements Serializable {
 	@NotNull(message="link should not be null.")
 	private String link;
 
+	@Column
+	@NotNull(message="chapterId should not be null.")
+	private Long chapterId;
+	
+	
+	
+
+	public Video() {
+		super();
+	}
+
+	
+	
+
+	public Video(Long id, String name,Long chapterId) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.chapterId = chapterId;
+	}
+
+
+
 
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -101,6 +125,16 @@ public class Video implements Serializable {
 	}
 
 
+	public Long getChapterId() {
+		return chapterId;
+	}
+
+
+	public void setChapterId(Long chapterId) {
+		this.chapterId = chapterId;
+	}
+
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -143,12 +177,10 @@ public class Video implements Serializable {
 	}
 
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "Video [id=" + id + ", name=" + name + ", description=" + description + ", link=" + link + "]";
+		return "Video [id=" + id + ", name=" + name + ", description=" + description + ", link=" + link + ", chapterId="
+				+ chapterId + "]";
 	}
 	
 	

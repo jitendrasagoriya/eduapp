@@ -52,6 +52,10 @@ private static final long serialVersionUID = 1L;
 	@Column(name="DIFFICULT",nullable=false )	
 	@NotNull(message="Please provide difficuly level of question")
 	private Difficuly difficuly;
+	
+	@Column
+	@NotNull(message="chapterId should not be null.")
+	private Long chapterId;
 
 	/**
 	 * @return the id
@@ -178,15 +182,23 @@ private static final long serialVersionUID = 1L;
 	public void setDifficuly(Difficuly difficuly) {
 		this.difficuly = difficuly;
 	}
+	
+	
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+	public Long getChapterId() {
+		return chapterId;
+	}
+
+	public void setChapterId(Long chapterId) {
+		this.chapterId = chapterId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((answer == null) ? 0 : answer.hashCode());
+		result = prime * result + ((chapterId == null) ? 0 : chapterId.hashCode());
 		result = prime * result + ((difficuly == null) ? 0 : difficuly.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((img == null) ? 0 : img.hashCode());
@@ -198,9 +210,6 @@ private static final long serialVersionUID = 1L;
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -214,6 +223,11 @@ private static final long serialVersionUID = 1L;
 			if (other.answer != null)
 				return false;
 		} else if (!answer.equals(other.answer))
+			return false;
+		if (chapterId == null) {
+			if (other.chapterId != null)
+				return false;
+		} else if (!chapterId.equals(other.chapterId))
 			return false;
 		if (difficuly != other.difficuly)
 			return false;
@@ -246,14 +260,11 @@ private static final long serialVersionUID = 1L;
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "Question [id=" + id + ", question=" + question + ", answer=" + answer + ", type=" + type + ", img="
 				+ img + ", link=" + link + ", videoLink=" + videoLink + ", status=" + status + ", difficuly="
-				+ difficuly + "]";
+				+ difficuly + ", chapterId=" + chapterId + "]";
 	}
 	
 	
