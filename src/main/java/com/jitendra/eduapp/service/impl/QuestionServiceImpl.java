@@ -9,8 +9,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.jitendra.eduapp.dao.McqAnswerDaoService;
 import com.jitendra.eduapp.dao.QuestionDaoService;
+import com.jitendra.eduapp.domin.McqAnswer;
 import com.jitendra.eduapp.domin.Question;
+import com.jitendra.eduapp.enums.QuestionType;
 import com.jitendra.eduapp.service.QuestionService;
 
 /**
@@ -24,6 +27,9 @@ public class QuestionServiceImpl implements QuestionService {
 	
 	@Autowired
 	private QuestionDaoService daoService;
+	
+	@Autowired
+	private McqAnswerDaoService mcqDaoService;
 
 	@Override
 	public Page<Question> getAll(Pageable pageable) {
@@ -37,6 +43,14 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	public Question getById(Long id) {
+		Question question = daoService.getRepository().getOne(id);
+		if(question.getType().name().equalsIgnoreCase(QuestionType.MCQ.name())) {
+			McqAnswer answer = mcqDaoService.getByQuestion(id);
+			if(answer == null) {
+				logger.error("Answer is not found for this question: id"+question.getId());
+			}
+			question.setMcqAnswer(answer);
+		}
 		return daoService.getRepository().getOne(id);
 	}
 

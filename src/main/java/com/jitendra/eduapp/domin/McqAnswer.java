@@ -53,6 +53,11 @@ public class McqAnswer implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public McqAnswer( Long qId) {
+		super(); 
+		this.qId = qId;
+	}
 
 	public McqAnswer(Long id, String option1, String option2, String option3, String option4, String answer,
 			String discription, Long qId) {

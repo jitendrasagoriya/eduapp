@@ -20,8 +20,7 @@ import com.jitendra.eduapp.enums.QuestionType;
  * @author jitendra sagoriya
  *
  */
-@Entity
-@Table(name="QUESTION") 
+
 
 /**
  * 	{
@@ -34,6 +33,9 @@ import com.jitendra.eduapp.enums.QuestionType;
  * 
  * 	}
  * */
+@Entity
+@Table(name="QUESTION") 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 public class Question implements Serializable {
 	
 private static final long serialVersionUID = 1L;
