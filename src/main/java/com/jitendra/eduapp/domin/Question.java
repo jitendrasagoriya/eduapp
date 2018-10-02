@@ -8,8 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.jitendra.eduapp.enums.Difficuly;
 import com.jitendra.eduapp.enums.QuestionStatus;
 import com.jitendra.eduapp.enums.QuestionType;
@@ -18,14 +21,26 @@ import com.jitendra.eduapp.enums.QuestionType;
  *
  */
 @Entity
-@Table(name="QUESTION")
+@Table(name="QUESTION") 
+
+/**
+ * 	{
+ * 		"question":"",
+ * 		"answer":"",
+ * 		"type":"",
+ * 		"status":"",
+ * 		"difficuly":"",
+ * 		"chapterId":""
+ * 
+ * 	}
+ * */
 public class Question implements Serializable {
 	
 private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column(name="QUESTION",length=500,nullable=false,unique=true)
 	@NotNull(message="question should not be null.")
@@ -52,24 +67,27 @@ private static final long serialVersionUID = 1L;
 	private QuestionStatus status;
 	
 	@Column(name="DIFFICULT",nullable=false )	
-	@NotNull(message="Please provide difficuly level of question")
+	@NotNull(message="Please provide difficuly level of question") 
 	private Difficuly difficuly;
 	
 	@Column
 	@NotNull(message="chapterId should not be null.")
 	private Long chapterId;
+	
+	@Transient
+	private McqAnswer mcqAnswer;
 
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -194,6 +212,22 @@ private static final long serialVersionUID = 1L;
 	public void setChapterId(Long chapterId) {
 		this.chapterId = chapterId;
 	}
+	
+	
+
+	/**
+	 * @return the mcqAnswer
+	 */
+	public McqAnswer getMcqAnswer() {
+		return mcqAnswer;
+	}
+
+	/**
+	 * @param mcqAnswer the mcqAnswer to set
+	 */
+	public void setMcqAnswer(McqAnswer mcqAnswer) {
+		this.mcqAnswer = mcqAnswer;
+	}
 
 	@Override
 	public int hashCode() {
@@ -262,11 +296,14 @@ private static final long serialVersionUID = 1L;
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Question [id=" + id + ", question=" + question + ", answer=" + answer + ", type=" + type + ", img="
 				+ img + ", link=" + link + ", videoLink=" + videoLink + ", status=" + status + ", difficuly="
-				+ difficuly + ", chapterId=" + chapterId + "]";
+				+ difficuly + ", chapterId=" + chapterId + ", mcqAnswer=" + mcqAnswer + "]";
 	}
 	
 	
