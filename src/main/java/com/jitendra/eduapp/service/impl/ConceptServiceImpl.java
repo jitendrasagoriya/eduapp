@@ -1,5 +1,6 @@
 package com.jitendra.eduapp.service.impl;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -8,16 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jitendra.eduapp.dao.ConceptDaoService;
 import com.jitendra.eduapp.domin.Concept;
+import com.jitendra.eduapp.domin.McqAnswer;
 import com.jitendra.eduapp.service.ConceptService;
 /**
  * @author jitendra sagoriya
  *
  */
 @Service
-public class ConceptServiceImpl implements ConceptService {
+public class ConceptServiceImpl extends BaseService<Concept> implements ConceptService {
 	
 	public static Logger logger = LoggerFactory.getLogger(ConceptServiceImpl.class);
 	
@@ -68,6 +71,22 @@ public class ConceptServiceImpl implements ConceptService {
 	@Override
 	public Concept update(Concept concept) {
 		return daoService.getRepository().save(concept);
+	}
+
+	@Override
+	public StringBuffer downlaod() {
+		List<Concept> concepts = getAll();
+		StringBuffer stringBuffer = new StringBuffer();
+		for (Concept concept : concepts) {
+			stringBuffer.append(concept.toCSVString()); 
+		}
+		return stringBuffer;
+	}
+
+	@Override
+	public List<Concept> uploadFile(MultipartFile multipartFile) throws IOException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

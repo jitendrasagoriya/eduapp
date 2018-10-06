@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.jitendra.eduapp.constants.Constant;
+
 
 
 /**
@@ -266,6 +268,36 @@ public class McqAnswer implements Serializable {
 				+ ", option4=" + option4 + ", answer=" + answer + ", discription=" + discription + ", qId=" + qId + "]";
 	}
 	
+	
+	public String toCSVString() {
+		StringBuffer buffer = new StringBuffer();
+		
+		buffer.append(this.getId());
+		buffer.append(Constant.COMMA_DELIMITER);		
+		
+		buffer.append(this.getOption1());
+		buffer.append(Constant.COMMA_DELIMITER);		
+		
+		buffer.append(this.getOption2());
+		buffer.append(Constant.COMMA_DELIMITER);		
+		
+		buffer.append(this.getOption3());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getOption4());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getAnswer());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getDiscription());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getqId());
+		buffer.append(Constant.NEW_LINE_SEPARATOR);
+		
+		return buffer.toString();
+	}
 	
 
 }

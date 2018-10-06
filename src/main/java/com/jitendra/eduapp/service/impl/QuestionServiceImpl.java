@@ -1,5 +1,6 @@
 package com.jitendra.eduapp.service.impl;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -8,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.jitendra.eduapp.constants.Constant;
 import com.jitendra.eduapp.dao.McqAnswerDaoService;
 import com.jitendra.eduapp.dao.QuestionDaoService;
 import com.jitendra.eduapp.domin.McqAnswer;
@@ -21,7 +24,7 @@ import com.jitendra.eduapp.service.QuestionService;
  *
  */
 @Service
-public class QuestionServiceImpl implements QuestionService {
+public class QuestionServiceImpl extends BaseService<Question> implements QuestionService {
 	
 	public static Logger logger = LoggerFactory.getLogger(QuestionServiceImpl.class);
 	
@@ -75,12 +78,33 @@ public class QuestionServiceImpl implements QuestionService {
 		}
 	}
 
+	
 	@Override
 	public Question update(Question question) throws Exception {
 		if(question.getId() != null )
 			return daoService.getRepository().save(question);
 		else
 			throw new Exception("Invalid data.");
+	}
+
+	
+	
+	@Override
+	public StringBuffer downlaod() {
+		List<Question> questions = getAll();
+		StringBuffer stringBuffer = new StringBuffer();
+		for (Question question : questions) {
+			stringBuffer.append(question.toCsvString()); 
+		}
+		return stringBuffer;
+	}
+
+	
+	
+	@Override
+	public List<Question> uploadFile(MultipartFile multipartFile) throws IOException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

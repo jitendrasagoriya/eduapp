@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import com.jitendra.eduapp.constants.Constant;
+
 /**
  * @author jitendra sagoriya
  *
@@ -187,5 +189,25 @@ public class Video implements Serializable {
 	}
 	
 	
+	public String toCSVString() {
+		StringBuffer buffer = new StringBuffer();
+
+		buffer.append(this.getId());
+		buffer.append(Constant.COMMA_DELIMITER);
+
+		buffer.append(this.getName());
+		buffer.append(Constant.COMMA_DELIMITER);
+
+		buffer.append(this.getDescription());
+		buffer.append(Constant.COMMA_DELIMITER);
+
+		buffer.append(this.getLink());
+		buffer.append(Constant.COMMA_DELIMITER);
+
+		buffer.append(this.getChapterId());
+		buffer.append(Constant.NEW_LINE_SEPARATOR);
+
+		return buffer.toString();
+	}
 
 }

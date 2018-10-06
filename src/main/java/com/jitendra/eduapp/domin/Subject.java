@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.jitendra.eduapp.constants.Constant;
 /**
  * @author jitendra sagoriya
  *
@@ -16,7 +18,7 @@ import javax.validation.constraints.NotNull;
 public class Subject {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
 	@Column(name="NAME",length=25,nullable=false,unique=true)
@@ -93,6 +95,17 @@ public class Subject {
 		return "Subject [id=" + id + ", name=" + name + "]";
 	}
 	
+	public String toCSVString() {
+		StringBuffer buffer = new StringBuffer();
+
+		buffer.append(this.getId());
+		buffer.append(Constant.COMMA_DELIMITER);
+
+		buffer.append(this.getName());		 
+		buffer.append(Constant.NEW_LINE_SEPARATOR);
+
+		return buffer.toString();
+	}
 	
 
 }

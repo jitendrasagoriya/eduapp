@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.jitendra.eduapp.constants.Constant;
 /**
  * @author jitendra sagoriya
  *
@@ -134,6 +135,22 @@ public class Chapter implements Serializable {
 		return "Chapter [id=" + id + ", name=" + name + ", subject=" + subject + ", classz=" + classz + "]";
 	}
 
-	 
+	public String toCSVString() {
+		StringBuffer buffer = new StringBuffer();
+
+		buffer.append(this.getId());
+		buffer.append(Constant.COMMA_DELIMITER);
+
+		buffer.append(this.getName());
+		buffer.append(Constant.COMMA_DELIMITER);
+
+		buffer.append(this.getSubject());
+		buffer.append(Constant.COMMA_DELIMITER); 
+
+		buffer.append(this.getClassz());
+		buffer.append(Constant.NEW_LINE_SEPARATOR);
+
+		return buffer.toString();
+	}
 	
 }

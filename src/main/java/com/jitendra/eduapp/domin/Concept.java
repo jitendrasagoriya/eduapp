@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.jitendra.eduapp.constants.Constant;
 import com.jitendra.eduapp.enums.ConceptType;
 
 /**
@@ -173,6 +174,27 @@ public class Concept implements Serializable {
 				+ chapterId + "]";
 	}
 	
+	
+	public String toCSVString() {
+		StringBuffer buffer = new StringBuffer();
+
+		buffer.append(this.getId());
+		buffer.append(Constant.COMMA_DELIMITER);
+
+		buffer.append(this.getName());
+		buffer.append(Constant.COMMA_DELIMITER);
+
+		buffer.append(this.getDefination());
+		buffer.append(Constant.COMMA_DELIMITER);
+
+		buffer.append(this.getType());
+		buffer.append(Constant.COMMA_DELIMITER);
+
+		buffer.append(this.getChapterId());
+		buffer.append(Constant.NEW_LINE_SEPARATOR);
+
+		return buffer.toString();
+	}
 	
 
 }

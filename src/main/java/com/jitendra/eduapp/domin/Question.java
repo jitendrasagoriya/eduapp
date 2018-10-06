@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.jitendra.eduapp.constants.Constant;
 import com.jitendra.eduapp.enums.Difficuly;
 import com.jitendra.eduapp.enums.QuestionStatus;
 import com.jitendra.eduapp.enums.QuestionType;
@@ -308,6 +309,39 @@ private static final long serialVersionUID = 1L;
 				+ difficuly + ", chapterId=" + chapterId + ", mcqAnswer=" + mcqAnswer + "]";
 	}
 	
-	
+	public String toCsvString() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(this.getId());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getQuestion());
+		buffer.append(Constant.COMMA_DELIMITER);		
+		
+		buffer.append(this.getType());
+		buffer.append(Constant.COMMA_DELIMITER);		
+		
+		buffer.append(this.getImg());
+		buffer.append(Constant.COMMA_DELIMITER);		
+		
+		buffer.append(this.getAnswer());
+		buffer.append(Constant.COMMA_DELIMITER);		
+		
+		buffer.append(this.getLink());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getVideoLink());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getStatus());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getStatus());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getChapterId());
+		buffer.append(Constant.NEW_LINE_SEPARATOR);
+
+		return buffer.toString();
+	}
 
 }
