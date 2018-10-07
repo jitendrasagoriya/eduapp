@@ -53,6 +53,25 @@ public class ChapterEndpoint {
 			return new ResponseEntity< >(chapter, HttpStatus.OK);
 		}
 	}
+	
+	
+	@GetMapping("/subject/{id}")
+	public ResponseEntity<?> getSubjectId(@PathVariable("id") Long id,Pageable pageable) {		 
+			return new ResponseEntity<>( chapterService.getByNameSubject(Long.toString(id),pageable), HttpStatus.OK);
+		 
+	}
+	
+	@GetMapping("/class/{classz}")
+	public ResponseEntity<?> getByClass(@PathVariable("classz")String classz,Pageable pageable) {		 
+			return new ResponseEntity<>( chapterService.getByClass( classz,pageable), HttpStatus.OK);
+		 
+	}
+	
+	@GetMapping("/subject/{id}/class/{classz}")
+	public ResponseEntity<?> getSubjectId(@PathVariable("id") Long id,@PathVariable("classz")String classz,Pageable pageable) {		 
+			return new ResponseEntity<>( chapterService.getByNameSubjectAndClass(Long.toString(id),classz,pageable), HttpStatus.OK);
+		 
+	}
 
 	@GetMapping
 	public ResponseEntity<?> getAll(Pageable pageable) {

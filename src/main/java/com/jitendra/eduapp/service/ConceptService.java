@@ -29,5 +29,7 @@ public interface ConceptService {
 	public Boolean delete(Long id);
 
 	public Concept update(Concept concept);
+	
+	public Integer getMax(Long id);
 
 }

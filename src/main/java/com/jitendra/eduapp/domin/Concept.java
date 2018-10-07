@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -42,6 +43,8 @@ public class Concept implements Serializable {
 	@NotNull(message="chapterId should not be null.")
 	private Long chapterId;
 	
+	@Column(name = "SEQUENCE") 
+	private Integer sequence;
 	
 
 	public Concept() {
@@ -125,6 +128,22 @@ public class Concept implements Serializable {
 		this.chapterId = chapterId;
 	}
 
+	/**
+	 * @return the sequence
+	 */
+	public Integer getSequence() {
+		return sequence;
+	}
+
+
+	/**
+	 * @param sequence the sequence to set
+	 */
+	public void setSequence(Integer sequence) {
+		this.sequence = sequence;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -168,10 +187,13 @@ public class Concept implements Serializable {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Concept [id=" + id + ", name=" + name + ", defination=" + defination + ", type=" + type + ", chapterId="
-				+ chapterId + "]";
+				+ chapterId + ", sequence=" + sequence + "]";
 	}
 	
 	
@@ -188,6 +210,9 @@ public class Concept implements Serializable {
 		buffer.append(Constant.COMMA_DELIMITER);
 
 		buffer.append(this.getType());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getSequence());
 		buffer.append(Constant.COMMA_DELIMITER);
 
 		buffer.append(this.getChapterId());

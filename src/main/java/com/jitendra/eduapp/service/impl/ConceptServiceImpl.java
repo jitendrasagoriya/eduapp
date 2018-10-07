@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.jitendra.eduapp.dao.ConceptDaoService;
 import com.jitendra.eduapp.domin.Concept;
 import com.jitendra.eduapp.domin.McqAnswer;
+import com.jitendra.eduapp.service.ChapterService;
 import com.jitendra.eduapp.service.ConceptService;
 /**
  * @author jitendra sagoriya
@@ -26,6 +27,9 @@ public class ConceptServiceImpl extends BaseService<Concept> implements ConceptS
 	
 	@Autowired
 	private ConceptDaoService daoService;
+	
+	@Autowired
+	private ChapterService chapterService;
 
 	@Override
 	public Page<Concept> getAll(Pageable pageable) {
@@ -54,13 +58,26 @@ public class ConceptServiceImpl extends BaseService<Concept> implements ConceptS
 
 	@Override
 	public Concept save(Concept concept) {
-		return daoService.getRepository().save(concept);
+		  concept = daoService.getRepository().save(concept);
+		
+		try {
+			if(concept.getId() != null ) {				 
+				chapterService.updateConceptCount(concept.getChapterId());
+			}
+		}catch (Exception e) {
+			logger.error(e.getMessage() );
+		}
+		
+		return concept;
 	}
 
 	@Override
 	public Boolean delete(Long id) {
 		try {
 			daoService.getRepository().deleteById(id);
+			
+			chapterService.reduceConceptCount(id);
+			
 			return Boolean.TRUE;
 		}catch (Exception e) {
 			logger.error("No such elenemt found. Id: "+id);
@@ -87,6 +104,11 @@ public class ConceptServiceImpl extends BaseService<Concept> implements ConceptS
 	public List<Concept> uploadFile(MultipartFile multipartFile) throws IOException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Integer getMax(Long id) {
+		return daoService.getRepository().getMax(id);
 	}
 
 }

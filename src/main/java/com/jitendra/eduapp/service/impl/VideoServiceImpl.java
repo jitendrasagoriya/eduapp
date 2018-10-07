@@ -16,6 +16,7 @@ import com.jitendra.eduapp.constants.Constant;
 import com.jitendra.eduapp.dao.VideoDaoService;
 import com.jitendra.eduapp.domin.Subject;
 import com.jitendra.eduapp.domin.Video;
+import com.jitendra.eduapp.service.ChapterService;
 import com.jitendra.eduapp.service.NativeQueryService;
 import com.jitendra.eduapp.service.VideoService;
 
@@ -32,7 +33,7 @@ public class VideoServiceImpl extends BaseService<Video> implements VideoService
 	private VideoDaoService daoService;
 	
 	@Autowired
-	private NativeQueryService nativeQueryService;
+	private ChapterService  chapterService;
 
 	@Override
 	public Page<Video> getAll(Pageable pageable) {
@@ -57,11 +58,11 @@ public class VideoServiceImpl extends BaseService<Video> implements VideoService
 
 	@Override
 	public Video save(Video video) {
-		video = daoService.getRepository().save(video);
-		try {
-			if(video.getId() != null ) {
-				if(video.getChapterId() == null ) video.setChapterId(0l);
-				nativeQueryService.insertIntoVideo(video.getId(), video.getChapterId());
+		video = daoService.getRepository().save(video);		
+		try {			
+			if(video.getId() != null ) {	
+				video.setSequence(getMax(video.getChapterId())==null?1:getMax(video.getChapterId())+1);
+				chapterService.updateVideoCount(video.getChapterId());
 			}
 		}catch (Exception e) {
 			logger.error(e.getMessage() );
@@ -73,6 +74,8 @@ public class VideoServiceImpl extends BaseService<Video> implements VideoService
 	public Boolean delete(Long id) {
 		try {
 			daoService.getRepository().deleteById(id);
+			
+			chapterService.reduceVideoCount(id);
 			return Boolean.TRUE;
 		}catch (Exception e) {
 			logger.error("No such elenemt found. Id: "+id);
@@ -114,6 +117,11 @@ public class VideoServiceImpl extends BaseService<Video> implements VideoService
 	public List<Video> uploadFile(MultipartFile multipartFile) throws IOException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Integer getMax(Long id) {
+		return daoService.getRepository().getMax(id);
 	}
 
 	 

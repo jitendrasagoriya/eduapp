@@ -12,7 +12,6 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.jitendra.eduapp.constants.Constant;
 import com.jitendra.eduapp.enums.Difficuly;
 import com.jitendra.eduapp.enums.QuestionStatus;
@@ -79,6 +78,9 @@ private static final long serialVersionUID = 1L;
 	
 	@Transient
 	private McqAnswer mcqAnswer;
+	
+	@Column(name = "SEQUENCE") 
+	private Integer sequence;
 
 	/**
 	 * @return the id
@@ -231,6 +233,22 @@ private static final long serialVersionUID = 1L;
 	public void setMcqAnswer(McqAnswer mcqAnswer) {
 		this.mcqAnswer = mcqAnswer;
 	}
+	
+	
+
+	/**
+	 * @return the sequence
+	 */
+	public Integer getSequence() {
+		return sequence;
+	}
+
+	/**
+	 * @param sequence the sequence to set
+	 */
+	public void setSequence(Integer sequence) {
+		this.sequence = sequence;
+	}
 
 	@Override
 	public int hashCode() {
@@ -336,6 +354,9 @@ private static final long serialVersionUID = 1L;
 		buffer.append(Constant.COMMA_DELIMITER);
 		
 		buffer.append(this.getStatus());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getSequence());
 		buffer.append(Constant.COMMA_DELIMITER);
 		
 		buffer.append(this.getChapterId());

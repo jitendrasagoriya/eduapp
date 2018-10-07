@@ -19,8 +19,7 @@ import com.jitendra.eduapp.domin.Video;
 public class CommenDaoServiceImpl implements CommenDaoService {
 	
 	@Autowired
-	private VideoDaoService videoDaoService;
-	
+	private VideoDaoService videoDaoService;	
 
 	@Autowired
 	private ConceptDaoService conceptDaoService;

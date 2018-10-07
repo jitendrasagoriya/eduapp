@@ -28,6 +28,7 @@ public interface QuestionService {
 
 	public Question update(Question question) throws Exception;
 	
+	public Integer getMax(Long id);
 	 
 
 }

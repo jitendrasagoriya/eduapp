@@ -33,6 +33,6 @@ public interface VideoService {
 
 	public Video update(Video subject);
 	
-	 
+	public Integer getMax(Long id);
 
 }

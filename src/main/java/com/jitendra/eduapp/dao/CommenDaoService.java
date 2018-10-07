@@ -10,8 +10,7 @@ import com.jitendra.eduapp.domin.Video;
  *
  */
 @Service
-public interface CommenDaoService {
-	
+public interface CommenDaoService {	
 	
 	public List<Video> getVideoByChapterId(Long id);
 

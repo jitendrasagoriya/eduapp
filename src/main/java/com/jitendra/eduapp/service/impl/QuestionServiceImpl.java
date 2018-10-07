@@ -17,6 +17,7 @@ import com.jitendra.eduapp.dao.QuestionDaoService;
 import com.jitendra.eduapp.domin.McqAnswer;
 import com.jitendra.eduapp.domin.Question;
 import com.jitendra.eduapp.enums.QuestionType;
+import com.jitendra.eduapp.service.ChapterService;
 import com.jitendra.eduapp.service.QuestionService;
 
 /**
@@ -33,6 +34,9 @@ public class QuestionServiceImpl extends BaseService<Question> implements Questi
 	
 	@Autowired
 	private McqAnswerDaoService mcqDaoService;
+	
+	@Autowired
+	private ChapterService chapterService;
 
 	@Override
 	public Page<Question> getAll(Pageable pageable) {
@@ -46,7 +50,8 @@ public class QuestionServiceImpl extends BaseService<Question> implements Questi
 
 	@Override
 	public Question getById(Long id) {
-		Question question = daoService.getRepository().getOne(id);
+		Question question = daoService.getRepository().getOne(id);		
+		
 		if(question.getType().name().equalsIgnoreCase(QuestionType.MCQ.name())) {
 			McqAnswer answer = mcqDaoService.getByQuestion(id);
 			if(answer == null) {
@@ -54,7 +59,7 @@ public class QuestionServiceImpl extends BaseService<Question> implements Questi
 			}
 			question.setMcqAnswer(answer);
 		}
-		return daoService.getRepository().getOne(id);
+		return question;
 	}
 
 	@Override
@@ -64,13 +69,24 @@ public class QuestionServiceImpl extends BaseService<Question> implements Questi
 
 	@Override
 	public Question save(Question question) {
-		return daoService.getRepository().save(question);
+		question = daoService.getRepository().save(question);
+		try {
+			if(question.getId() != null ) {	
+				
+				chapterService.updateVideoCount(question.getChapterId());
+			}
+		}catch (Exception e) {
+			logger.error(e.getMessage() );
+		}
+		return question;
 	}
 
 	@Override
 	public Boolean delete(Long id) {
 		try {
 			daoService.getRepository().deleteById(id);
+			
+			chapterService.reduceQuestionCount(id);
 			return Boolean.TRUE;
 		}catch (Exception e) {
 			logger.error("No such elenemt found. Id: "+id);
@@ -105,6 +121,11 @@ public class QuestionServiceImpl extends BaseService<Question> implements Questi
 	public List<Question> uploadFile(MultipartFile multipartFile) throws IOException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Integer getMax(Long id) {
+		return daoService.getRepository().getMax(id);
 	}
 
 }
