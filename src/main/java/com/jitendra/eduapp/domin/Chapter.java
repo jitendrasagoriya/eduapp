@@ -58,7 +58,7 @@ public class Chapter implements Serializable {
 	private Integer sequence;
 	
 	@Column(name="RESUME",nullable = true)
-	private boolean resume;
+	private Boolean resume;
 	
 	@Column(name="RESUMETIME",nullable = true)
 	private Timestamp resumeTimestamp;
@@ -177,7 +177,7 @@ public class Chapter implements Serializable {
 	/**
 	 * @param resume the resume to set
 	 */
-	public void setResume(boolean resume) {
+	public void setResume(Boolean resume) {
 		this.resume = resume;
 	}
 

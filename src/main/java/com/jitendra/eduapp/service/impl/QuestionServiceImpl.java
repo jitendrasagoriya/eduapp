@@ -72,19 +72,21 @@ public class QuestionServiceImpl extends BaseService<Question> implements Questi
 		question = daoService.getRepository().save(question);
 		McqAnswer answer = question.getMcqAnswer();
 		try {
-			if(question.getId() != null ) {	
+			if(question.getId() != null && question.getType().equals(QuestionType.MCQ)  ) {	
 				answer.setqId(question.getId());
 				mcqDaoService.getRepository().save(answer);
 			}
 		}catch (Exception e) {
+			logger.error("Unable to insert mcq for question id :" +question.getId());
 			logger.error(e.getMessage() );
 		}
 		
 		try {
 			if(question.getId() != null ) {					
-				chapterService.updateVideoCount(question.getChapterId());
+				chapterService.updateQuestionCount(question.getChapterId());
 			}
 		}catch (Exception e) {
+			logger.error("Unable to update question count for question id :" +question.getId());
 			logger.error(e.getMessage() );
 		}
 		return question;
