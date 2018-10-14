@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
@@ -57,7 +58,7 @@ public class Chapter implements Serializable {
 	@SequenceGenerator(name="chapter_generator", sequenceName = "chapter_seq", allocationSize=50)
 	private Integer sequence;
 	
-	@Column(name="RESUME",nullable = true)
+	@Transient
 	private Boolean resume;
 	
 	@Column(name="RESUMETIME",nullable = true)
