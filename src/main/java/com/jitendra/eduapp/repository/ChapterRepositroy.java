@@ -47,11 +47,11 @@ public interface ChapterRepositroy extends JpaRepository<Chapter, Long> {
 	@Query("update Chapter c set c.conceptCount = c.conceptCount - :count where c.id = :id")
 	public int reduceConceptCount(@Param("id") Long id  , @Param("count") Integer count);
 	
-	@Modifying
+	/*@Modifying
 	@Query("update Chapter c set c.resume = true, c.resumeTimestamp = :time where c.id = :id")
 	public int setResume(@Param("id") Long id , @Param("time") Timestamp time );
 	
 	@Query("SELECT C FROM Chapter C WHERE C.resume = :true order by C.resume desc")
-	public Chapter getResume();
+	public Chapter getResume();*/
 	
 }
