@@ -60,4 +60,10 @@ public class ChapterDaoServiceImpl implements ChapterDaoService {
 		return 0;
 	}
 
+	@Transactional
+	@Override
+	public void updateResumeFalse() {
+		chapterRepositroy.getUpdateResume();		
+	}
+
 }

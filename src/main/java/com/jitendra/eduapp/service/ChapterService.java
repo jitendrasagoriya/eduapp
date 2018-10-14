@@ -64,6 +64,8 @@ public interface ChapterService {
 
 	public int reduceConceptCount(Long id,Integer count);
 	
+	public void updateResumeFalse();
+	
 	
 
 }

@@ -184,6 +184,12 @@ public class ChapterServiceImpl extends BaseService<Chapter> implements ChapterS
 		return daoService.reduceConceptCount(id,count);
 	}
 
+	@Override
+	@Transactional
+	public void updateResumeFalse() {
+		daoService.updateResumeFalse();		
+	}
+
 	
 	
 }

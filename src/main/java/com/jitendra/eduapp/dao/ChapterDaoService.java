@@ -24,5 +24,7 @@ public interface ChapterDaoService extends BaseDaoService<ChapterRepositroy> {
 	public int reduceConceptCount(Long id, Integer count);
 	
 	public int updateResume(Long id);
+	
+	public void updateResumeFalse();
 
 }

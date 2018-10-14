@@ -88,6 +88,18 @@ public class ChapterEndpoint {
 		return new ResponseEntity<>(chapterService.save(chapter), HttpStatus.OK);
 	}
 	
+	
+	@PutMapping("/resume/false")
+	public ResponseEntity<?> updateResumeFalse() {
+		try {
+			chapterService.updateResumeFalse();
+			return new ResponseEntity<>("Successfully update all resume to false", HttpStatus.OK);
+		}catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+		}
+		
+	}
+	
 	@DeleteMapping("{id}")
 	public ResponseEntity<?> delete( @PathVariable("id") Long id ) {
 		Boolean result = chapterService.delete(id);
