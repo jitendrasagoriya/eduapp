@@ -70,9 +70,18 @@ public class QuestionServiceImpl extends BaseService<Question> implements Questi
 	@Override
 	public Question save(Question question) {
 		question = daoService.getRepository().save(question);
+		McqAnswer answer = question.getMcqAnswer();
 		try {
 			if(question.getId() != null ) {	
-				
+				answer.setqId(question.getId());
+				mcqDaoService.getRepository().save(answer);
+			}
+		}catch (Exception e) {
+			logger.error(e.getMessage() );
+		}
+		
+		try {
+			if(question.getId() != null ) {					
 				chapterService.updateVideoCount(question.getChapterId());
 			}
 		}catch (Exception e) {

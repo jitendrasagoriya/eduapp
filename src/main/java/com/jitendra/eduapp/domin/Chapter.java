@@ -1,6 +1,7 @@
 package com.jitendra.eduapp.domin;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -55,6 +56,13 @@ public class Chapter implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "chapter_generator")
 	@SequenceGenerator(name="chapter_generator", sequenceName = "chapter_seq", allocationSize=50)
 	private Integer sequence;
+	
+	@Column(name="RESUME",nullable = true)
+	private boolean resume;
+	
+	@Column(name="RESUMETIME",nullable = true)
+	private Timestamp resumeTimestamp;
+	
 
 	public Chapter(Long id, String name, String subject, String classz) {
 		super();
@@ -159,6 +167,34 @@ public class Chapter implements Serializable {
 		this.sequence = sequence;
 	}
 
+	/**
+	 * @return the resume
+	 */
+	public boolean isResume() {
+		return resume;
+	}
+
+	/**
+	 * @param resume the resume to set
+	 */
+	public void setResume(boolean resume) {
+		this.resume = resume;
+	}
+
+	/**
+	 * @return the resumeTimestamp
+	 */
+	public Timestamp getResumeTimestamp() {
+		return resumeTimestamp;
+	}
+
+	/**
+	 * @param resumeTimestamp the resumeTimestamp to set
+	 */
+	public void setResumeTimestamp(Timestamp resumeTimestamp) {
+		this.resumeTimestamp = resumeTimestamp;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -209,7 +245,7 @@ public class Chapter implements Serializable {
 	public String toString() {
 		return "Chapter [id=" + id + ", name=" + name + ", subject=" + subject + ", classz=" + classz + ", videoCount="
 				+ videoCount + ", questionCount=" + questionCount + ", conceptCount=" + conceptCount + ", sequence="
-				+ sequence + "]";
+				+ sequence + ", resume=" + resume + "]";
 	}
 
 	public String toCSVString() {
@@ -234,6 +270,12 @@ public class Chapter implements Serializable {
 		buffer.append(Constant.COMMA_DELIMITER);
 		
 		buffer.append(this.getSequence());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.isResume());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getResumeTimestamp());
 		buffer.append(Constant.COMMA_DELIMITER);
 
 		buffer.append(this.getClassz());

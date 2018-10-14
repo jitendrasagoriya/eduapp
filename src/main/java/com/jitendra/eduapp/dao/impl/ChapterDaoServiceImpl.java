@@ -54,4 +54,10 @@ public class ChapterDaoServiceImpl implements ChapterDaoService {
 		return chapterRepositroy.reduceConceptCount(id, count);
 	}
 
+	@Override
+	public int updateResume(Long id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
