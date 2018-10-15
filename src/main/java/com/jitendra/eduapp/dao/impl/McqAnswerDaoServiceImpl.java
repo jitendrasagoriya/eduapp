@@ -1,5 +1,7 @@
 package com.jitendra.eduapp.dao.impl;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -26,8 +28,12 @@ public class McqAnswerDaoServiceImpl implements McqAnswerDaoService {
 	@Override
 	public  McqAnswer getByQuestion(Long id) {
 		Example<McqAnswer> mcqAnswerExample = Example.of(new McqAnswer(id));
-		 McqAnswer  mcqAnswer =  mcqAnswerRepository.findOne(mcqAnswerExample ).get();
-		return mcqAnswer;
+		try {
+		 McqAnswer  mcqAnswer =  mcqAnswerRepository.findOne(mcqAnswerExample).get();
+		 return mcqAnswer;
+		}catch (NoSuchElementException e) {
+			return null;
+		}
 	}
 
 }

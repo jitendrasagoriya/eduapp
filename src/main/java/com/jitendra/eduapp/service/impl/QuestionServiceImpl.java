@@ -53,7 +53,7 @@ public class QuestionServiceImpl extends BaseService<Question> implements Questi
 		Question question = daoService.getRepository().getOne(id);		
 		
 		if(question.getType().name().equalsIgnoreCase(QuestionType.MCQ.name())) {
-			McqAnswer answer = mcqDaoService.getByQuestion(id);
+			McqAnswer answer = mcqDaoService.getByQuestion(question.getId());
 			if(answer == null) {
 				logger.error("Answer is not found for this question: id"+question.getId());
 			}
