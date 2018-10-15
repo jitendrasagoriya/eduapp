@@ -2,7 +2,10 @@ package com.jitendra.eduapp.enums;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 public enum Difficuly {
 	
 	 EASY(90001,"EASY","EASY"),

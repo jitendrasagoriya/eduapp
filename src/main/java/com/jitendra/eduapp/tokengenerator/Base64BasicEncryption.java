@@ -3,7 +3,10 @@ package com.jitendra.eduapp.tokengenerator;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 public class Base64BasicEncryption {
 	
 	 static Base64.Encoder encoder = Base64.getEncoder();

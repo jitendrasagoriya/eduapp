@@ -1,7 +1,10 @@
 package com.jitendra.eduapp.tokengenerator;
 
 import java.security.SecureRandom;
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 public class SecureTokenGenerator {
 	
 	public static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

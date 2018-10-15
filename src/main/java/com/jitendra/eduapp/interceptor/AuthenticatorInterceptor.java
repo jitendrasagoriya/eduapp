@@ -13,7 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
  
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Component
 public class AuthenticatorInterceptor extends HandlerInterceptorAdapter {
 	

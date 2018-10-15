@@ -8,29 +8,48 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.jitendra.eduapp.constants.Constant;
 import com.jitendra.eduapp.enums.Difficuly;
 import com.jitendra.eduapp.enums.QuestionStatus;
 import com.jitendra.eduapp.enums.QuestionType;
+/**
+ * @author jitendra sagoriya
+ *
+ */
 
+
+/**
+ * 	{
+ * 		"question":"",
+ * 		"answer":"",
+ * 		"type":"",
+ * 		"status":"",
+ * 		"difficuly":"",
+ * 		"chapterId":""
+ * 
+ * 	}
+ * */
 @Entity
-@Table(name="QUESTION")
+@Table(name="QUESTION") 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 public class Question implements Serializable {
 	
 private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column(name="QUESTION",length=500,nullable=false,unique=true)
 	@NotNull(message="question should not be null.")
 	private String question;
 	
 	@Column(name="ANSWER",nullable=false )
-	private String answer;
-	
+	private String answer; 
 	
 	@Column(name="TYPE",nullable=false )
 	@NotNull(message="Please provide type of question")
@@ -50,24 +69,30 @@ private static final long serialVersionUID = 1L;
 	private QuestionStatus status;
 	
 	@Column(name="DIFFICULT",nullable=false )	
-	@NotNull(message="Please provide difficuly level of question")
+	@NotNull(message="Please provide difficuly level of question") 
 	private Difficuly difficuly;
 	
 	@Column
 	@NotNull(message="chapterId should not be null.")
 	private Long chapterId;
+	
+	@Transient
+	private McqAnswer mcqAnswer;
+	
+	@Column(name = "SEQUENCE") 
+	private Integer sequence;
 
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -192,6 +217,38 @@ private static final long serialVersionUID = 1L;
 	public void setChapterId(Long chapterId) {
 		this.chapterId = chapterId;
 	}
+	
+	
+
+	/**
+	 * @return the mcqAnswer
+	 */
+	public McqAnswer getMcqAnswer() {
+		return mcqAnswer;
+	}
+
+	/**
+	 * @param mcqAnswer the mcqAnswer to set
+	 */
+	public void setMcqAnswer(McqAnswer mcqAnswer) {
+		this.mcqAnswer = mcqAnswer;
+	}
+	
+	
+
+	/**
+	 * @return the sequence
+	 */
+	public Integer getSequence() {
+		return sequence;
+	}
+
+	/**
+	 * @param sequence the sequence to set
+	 */
+	public void setSequence(Integer sequence) {
+		this.sequence = sequence;
+	}
 
 	@Override
 	public int hashCode() {
@@ -260,13 +317,52 @@ private static final long serialVersionUID = 1L;
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Question [id=" + id + ", question=" + question + ", answer=" + answer + ", type=" + type + ", img="
 				+ img + ", link=" + link + ", videoLink=" + videoLink + ", status=" + status + ", difficuly="
-				+ difficuly + ", chapterId=" + chapterId + "]";
+				+ difficuly + ", chapterId=" + chapterId + ", mcqAnswer=" + mcqAnswer + "]";
 	}
 	
-	
+	public String toCsvString() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(this.getId());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getQuestion());
+		buffer.append(Constant.COMMA_DELIMITER);		
+		
+		buffer.append(this.getType());
+		buffer.append(Constant.COMMA_DELIMITER);		
+		
+		buffer.append(this.getImg());
+		buffer.append(Constant.COMMA_DELIMITER);		
+		
+		buffer.append(this.getAnswer());
+		buffer.append(Constant.COMMA_DELIMITER);		
+		
+		buffer.append(this.getLink());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getVideoLink());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getStatus());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getStatus());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getSequence());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getChapterId());
+		buffer.append(Constant.NEW_LINE_SEPARATOR);
+
+		return buffer.toString();
+	}
 
 }

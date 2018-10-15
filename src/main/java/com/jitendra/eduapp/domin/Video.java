@@ -11,7 +11,12 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import com.jitendra.eduapp.constants.Constant;
 
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Entity
 @Table(name="VIDEO")
 public class Video implements Serializable {
@@ -41,7 +46,8 @@ public class Video implements Serializable {
 	@NotNull(message="chapterId should not be null.")
 	private Long chapterId;
 	
-	
+	@Column(name = "SEQUENCE") 
+	private Integer sequence;
 	
 
 	public Video() {
@@ -135,6 +141,36 @@ public class Video implements Serializable {
 	}
 
 
+	/**
+	 * @return the sequence
+	 */
+	public Integer getSequence() {
+		return sequence;
+	}
+
+
+
+
+	/**
+	 * @param sequence the sequence to set
+	 */
+	public void setSequence(Integer sequence) {
+		this.sequence = sequence;
+	}
+
+
+
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -184,5 +220,28 @@ public class Video implements Serializable {
 	}
 	
 	
+	public String toCSVString() {
+		StringBuffer buffer = new StringBuffer();
+
+		buffer.append(this.getId());
+		buffer.append(Constant.COMMA_DELIMITER);
+
+		buffer.append(this.getName());
+		buffer.append(Constant.COMMA_DELIMITER);
+
+		buffer.append(this.getDescription());
+		buffer.append(Constant.COMMA_DELIMITER);
+
+		buffer.append(this.getLink());
+		buffer.append(Constant.COMMA_DELIMITER);
+		
+		buffer.append(this.getSequence());
+		buffer.append(Constant.COMMA_DELIMITER);
+
+		buffer.append(this.getChapterId());
+		buffer.append(Constant.NEW_LINE_SEPARATOR);
+
+		return buffer.toString();
+	}
 
 }

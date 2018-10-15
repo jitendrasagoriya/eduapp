@@ -3,12 +3,17 @@ package com.jitendra.eduapp.enums;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * @author jitendra sagoriya
+ *
+ */
 public enum QuestionType {
 	
-	 TYPE1(70001,"TYPE1","TYPE1"),
-	 TYPE2(70002,"TYPE2","TYPE2"),
-	 TYPE3(70003,"TYPE3","TYPE3"),
-	 TYPE4(70004,"TYPE4","TYPE4");
+	 MCQ(70001,"MCQ","MCQ"),
+	 LONGANSWER(70002,"LONGANSWER","LONGANSWER"),
+	 ONELINER(70003,"ONELINER","ONELINER"),
+	 TRUEFALSE(70004,"TRUEFALSE","TRUEFALSE");
 	
 	
 	private static final Map<Integer, QuestionType> byId = new HashMap<Integer, QuestionType>();

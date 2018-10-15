@@ -11,13 +11,15 @@ import com.jitendra.eduapp.dao.ConceptDaoService;
 import com.jitendra.eduapp.dao.QuestionDaoService;
 import com.jitendra.eduapp.dao.VideoDaoService;
 import com.jitendra.eduapp.domin.Video;
-
+/**
+ * @author jitendra sagoriya
+ *
+ */
 @Service
 public class CommenDaoServiceImpl implements CommenDaoService {
 	
 	@Autowired
-	private VideoDaoService videoDaoService;
-	
+	private VideoDaoService videoDaoService;	
 
 	@Autowired
 	private ConceptDaoService conceptDaoService;
