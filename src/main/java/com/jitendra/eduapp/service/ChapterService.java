@@ -66,6 +66,10 @@ public interface ChapterService {
 	
 	public void updateResumeFalse();
 	
+	public int updateResume(Long id);
+	
+	public Chapter getResume(String classz);
+	
 	
 
 }

@@ -2,6 +2,7 @@ package com.jitendra.eduapp.dao;
 
 import org.springframework.stereotype.Service;
 
+import com.jitendra.eduapp.domin.Chapter;
 import com.jitendra.eduapp.repository.ChapterRepositroy;
 
 /**
@@ -24,6 +25,8 @@ public interface ChapterDaoService extends BaseDaoService<ChapterRepositroy> {
 	public int reduceConceptCount(Long id, Integer count);
 	
 	public int updateResume(Long id);
+	
+	public Chapter getResume(String classz);
 	
 	public void updateResumeFalse();
 

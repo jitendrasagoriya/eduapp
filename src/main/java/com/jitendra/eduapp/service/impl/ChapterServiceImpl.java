@@ -190,6 +190,15 @@ public class ChapterServiceImpl extends BaseService<Chapter> implements ChapterS
 		daoService.updateResumeFalse();		
 	}
 
+	@Override
+	public int updateResume(Long id) {
+		return daoService.updateResume(id);
+	}
+
+	@Override
+	public Chapter getResume(String classz) {
+		return daoService.getResume(classz);
+	}
 	
 	
 }

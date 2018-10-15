@@ -1,6 +1,7 @@
 package com.jitendra.eduapp.repository;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -51,10 +52,9 @@ public interface ChapterRepositroy extends JpaRepository<Chapter, Long> {
 	@Query("update Chapter c set c.resume = true, c.resumeTimestamp = :time where c.id = :id")
 	public int setResume(@Param("id") Long id , @Param("time") Timestamp time );
 	
-	@Query("SELECT C FROM Chapter C WHERE C.resume = :true order by C.resume desc")
-	public Chapter getResume();
-	
-	
+	/*@Query(value ="SELECT * FROM CHAPTER  WHERE RESUME = TRUE AND CLASS = :classz AND RESUMETIME = max(RESUMETIME) ORDER BY RESUME desc",nativeQuery = true)
+	public Chapter getResume(@Param("classz") String classz);	
+	*/
 	@Modifying
 	@Query("update Chapter c set c.resume = false")
 	public void getUpdateResume();

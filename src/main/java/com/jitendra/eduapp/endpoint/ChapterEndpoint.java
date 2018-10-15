@@ -54,6 +54,11 @@ public class ChapterEndpoint {
 		}
 	}
 	
+	@GetMapping("/resume/{classz}")
+	public ResponseEntity<?> getResumeChapter(@PathVariable("classz")String classz) {		 
+			return new ResponseEntity<>( chapterService.getResume(classz), HttpStatus.OK);
+		 
+	}
 	
 	@GetMapping("/subject/{id}")
 	public ResponseEntity<?> getSubjectId(@PathVariable("id") Long id,Pageable pageable) {		 
@@ -94,6 +99,17 @@ public class ChapterEndpoint {
 		try {
 			chapterService.updateResumeFalse();
 			return new ResponseEntity<>("Successfully update all resume to false", HttpStatus.OK);
+		}catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+		}
+		
+	}
+	
+	@PutMapping("resume/{id}")
+	public ResponseEntity<?> updateResume(@PathVariable("id") Long id) {
+		try {
+			chapterService.updateResume(id);
+			return new ResponseEntity<>("Successfully updateresume to chapter id :"+id, HttpStatus.OK);
 		}catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
 		}
