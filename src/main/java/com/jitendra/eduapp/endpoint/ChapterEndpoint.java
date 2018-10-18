@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jitendra.eduapp.domin.Chapter;
-import com.jitendra.eduapp.service.ChapterService;
 import com.jitendra.eduapp.service.impl.ChapterServiceImpl;
 
 

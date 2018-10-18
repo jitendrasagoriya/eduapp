@@ -37,8 +37,8 @@ public class Authentication implements Serializable {
 	private Long tokenTimeout;
 	
 	
-	@Column(name="FID")
-	private Long flatmateId;
+	@Column(name="SID")
+	private Long studentId;
 
 	/**
 	 * 
@@ -74,14 +74,14 @@ public class Authentication implements Serializable {
 	 * @param flatmateId
 	 */
 	public Authentication(@NotNull String userName, String password, Timestamp lastLogin, String accessToken,
-			Long tokenTimeout, Long flatmateId) {
+			Long tokenTimeout, Long studentId) {
 		super();
 		this.userName = userName;
 		this.password = password;
 		this.lastLogin = lastLogin;
 		this.accessToken = accessToken;
 		this.tokenTimeout = tokenTimeout;
-		this.flatmateId = flatmateId;
+		this.studentId = studentId;
 	}
 
 	public String getUserName() {
@@ -124,12 +124,12 @@ public class Authentication implements Serializable {
 		this.tokenTimeout = tokenTimeout;
 	}
 
-	public Long getFlatmateId() {
-		return flatmateId;
+	public Long getstudentId() {
+		return studentId;
 	}
 
-	public void setFlatmateId(Long flatmateId) {
-		this.flatmateId = flatmateId;
+	public void setstudentId(Long studentId) {
+		this.studentId = studentId;
 	}
 
 	@Override
@@ -137,7 +137,7 @@ public class Authentication implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((accessToken == null) ? 0 : accessToken.hashCode());
-		result = prime * result + ((flatmateId == null) ? 0 : flatmateId.hashCode());
+		result = prime * result + ((studentId == null) ? 0 : studentId.hashCode());
 		result = prime * result + ((lastLogin == null) ? 0 : lastLogin.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((tokenTimeout == null) ? 0 : tokenTimeout.hashCode());
@@ -159,10 +159,10 @@ public class Authentication implements Serializable {
 				return false;
 		} else if (!accessToken.equals(other.accessToken))
 			return false;
-		if (flatmateId == null) {
-			if (other.flatmateId != null)
+		if (studentId == null) {
+			if (other.studentId != null)
 				return false;
-		} else if (!flatmateId.equals(other.flatmateId))
+		} else if (!studentId.equals(other.studentId))
 			return false;
 		if (lastLogin == null) {
 			if (other.lastLogin != null)
@@ -189,9 +189,9 @@ public class Authentication implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Authentication [userName=" + userName + ", password=" + password + ", lastLogin=" + lastLogin
-				+ ", accessToken=" + accessToken + ", tokenTimeout=" + tokenTimeout + ", flatmateId=" + flatmateId
-				+ "]";
+		return "{userName:" + userName + ", password:" + password + ", lastLogin:" + lastLogin
+				+ ", accessToken:" + accessToken + ", tokenTimeout:" + tokenTimeout + ", studentId:" + studentId
+				+ "}";
 	}
 	
 	

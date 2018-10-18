@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jitendra.eduapp.domin.Subject;
 
-public abstract class BaseService<T> {
+public abstract class BaseService<T>   {
 	
 	public  File convertMultiPartToFile(MultipartFile file) throws IOException {
 		File convFile = new File(file.getOriginalFilename());
