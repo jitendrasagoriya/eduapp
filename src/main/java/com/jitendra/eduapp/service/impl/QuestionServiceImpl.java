@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.jitendra.eduapp.constants.Constant;
 import com.jitendra.eduapp.dao.McqAnswerDaoService;
 import com.jitendra.eduapp.dao.QuestionDaoService;
 import com.jitendra.eduapp.domin.McqAnswer;
@@ -64,7 +63,12 @@ public class QuestionServiceImpl extends BaseService<Question> implements Questi
 
 	@Override
 	public Page<Question> getByChapter(String id, Pageable pageable) {
-		return null;
+		return daoService.getByChapter(id, pageable);
+	}
+	
+	@Override
+	public Page<Question> getByChapter(String id, QuestionType type, Pageable pageable) {
+		return daoService.getByChapter(id,type, pageable);
 	}
 
 	@Override

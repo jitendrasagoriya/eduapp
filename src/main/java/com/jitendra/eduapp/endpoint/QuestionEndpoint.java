@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jitendra.eduapp.domin.Question;
+import com.jitendra.eduapp.enums.QuestionType;
 import com.jitendra.eduapp.service.impl.QuestionServiceImpl;
 
 @CrossOrigin(maxAge = 3600)
@@ -53,7 +54,17 @@ public class QuestionEndpoint {
 	public ResponseEntity<?> getByChapterId(@PathVariable("id") String id,Pageable pageable) {
 		Page<Question> question = questionService.getByChapter(id, pageable);
 		if (question == null || !question.hasContent()) {
-			return new ResponseEntity<String>("No such video found for chapter : "+id, HttpStatus.OK);
+			return new ResponseEntity<String>("No questions found for chapter : "+id, HttpStatus.OK);
+		} else {			
+			return new ResponseEntity< >(question, HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping("/mcq/chapter/{id}")
+	public ResponseEntity<?> getMcqByChapterId(@PathVariable("id") String id,Pageable pageable) {
+		Page<Question> question = questionService.getByChapter(id, QuestionType.MCQ, pageable);
+		if (question == null || !question.hasContent()) {
+			return new ResponseEntity<String>("No questions found for chapter : "+id, HttpStatus.OK);
 		} else {			
 			return new ResponseEntity< >(question, HttpStatus.OK);
 		}
@@ -76,7 +87,6 @@ public class QuestionEndpoint {
 	
 	@DeleteMapping("{id}")
 	public ResponseEntity<?> delete( @PathVariable("id") Long id ) {
-		//subjectService.save(subject)
 		return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
 	}
 	

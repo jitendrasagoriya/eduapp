@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jitendra.eduapp.domin.Question;
+import com.jitendra.eduapp.enums.QuestionType;
 /**
  * @author jitendra sagoriya
  *
@@ -29,6 +30,8 @@ public interface QuestionService {
 	public Question update(Question question) throws Exception;
 	
 	public Integer getMax(Long id);
+
+	Page<Question> getByChapter(String id, QuestionType type, Pageable pageable);
 	 
 
 }

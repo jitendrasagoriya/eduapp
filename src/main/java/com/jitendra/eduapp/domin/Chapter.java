@@ -170,8 +170,10 @@ public class Chapter implements Serializable {
 	/**
 	 * @return the resume
 	 */
-	public boolean isResume() {
-		return resume;
+	public boolean getResume() {
+		if(this.resume == null)
+			return false;
+		return this.resume;
 	}
 
 	/**
@@ -272,7 +274,7 @@ public class Chapter implements Serializable {
 		buffer.append(this.getSequence());
 		buffer.append(Constant.COMMA_DELIMITER);
 		
-		buffer.append(this.isResume());
+		buffer.append(this.getResume());
 		buffer.append(Constant.COMMA_DELIMITER);
 		
 		buffer.append(this.getResumeTimestamp());

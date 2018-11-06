@@ -81,6 +81,30 @@ private static final long serialVersionUID = 1L;
 	
 	@Column(name = "SEQUENCE") 
 	private Integer sequence;
+	
+	
+	
+
+	public Question() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+	public Question(QuestionType type,
+			  QuestionStatus status,
+			 Difficuly difficuly,
+			 Long chapterId, Integer sequence) {
+		super();
+		this.type = type;
+		this.status = status;
+		this.difficuly = difficuly;
+		this.chapterId = chapterId;
+		this.sequence = sequence;
+	}
+
+
 
 	/**
 	 * @return the id

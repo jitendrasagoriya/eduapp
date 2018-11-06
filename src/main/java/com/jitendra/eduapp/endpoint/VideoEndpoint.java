@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jitendra.eduapp.domin.Video;
-import com.jitendra.eduapp.service.VideoService;
 import com.jitendra.eduapp.service.impl.VideoServiceImpl;
 
 
