@@ -30,6 +30,10 @@ public interface QuestionService {
 	public Question update(Question question) throws Exception;
 	
 	public Integer getMax(Long id);
+	
+	public Question next(Integer sequence);
+	
+	public Question privous(Integer sequence);
 
 	Page<Question> getByChapter(String id, QuestionType type, Pageable pageable);
 	 

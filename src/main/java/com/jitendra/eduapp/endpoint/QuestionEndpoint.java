@@ -69,6 +69,16 @@ public class QuestionEndpoint {
 			return new ResponseEntity< >(question, HttpStatus.OK);
 		}
 	}
+	
+	@GetMapping("/{id}/next")
+	public ResponseEntity<?> next(@PathVariable("id") Integer sequenceId) {
+		Question question = null;
+		if (question == null) {
+			return new ResponseEntity<String>("No question found : "+sequenceId, HttpStatus.OK);
+		} else {			
+			return new ResponseEntity<>(question, HttpStatus.OK);
+		}
+	}
 
 	@GetMapping
 	public ResponseEntity<?> getAll(Pageable pageable) {
