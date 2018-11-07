@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jitendra.eduapp.dao.McqAnswerDaoService;
 import com.jitendra.eduapp.domin.McqAnswer;
-import com.jitendra.eduapp.domin.Question;
 import com.jitendra.eduapp.service.McqAnswerService;
 
 @Service

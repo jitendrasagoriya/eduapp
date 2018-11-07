@@ -68,6 +68,21 @@ public class QuestionServiceImpl extends BaseService<Question> implements Questi
 	
 	@Override
 	public Page<Question> getByChapter(String id, QuestionType type, Pageable pageable) {
+		Page<Question> result = daoService.getByChapter(id,type, pageable);
+		List<Question> questions = result.getContent();
+		if(questions != null) {
+			for (Question question : questions) {
+				if(question != null) {
+					if(  question.getType().equals(QuestionType.MCQ)  ) {
+						McqAnswer answer = mcqDaoService.getByQuestion(question.getId());
+						if(answer == null) {
+							logger.error("Answer is not found for this question: id"+question.getId());
+						}
+						question.setMcqAnswer(answer);
+					}
+				}
+			}
+		}
 		return daoService.getByChapter(id,type, pageable);
 	}
 
@@ -141,6 +156,18 @@ public class QuestionServiceImpl extends BaseService<Question> implements Questi
 	@Override
 	public Integer getMax(Long id) {
 		return daoService.getRepository().getMax(id);
+	}
+
+	@Override
+	public Question next(Integer sequence) {
+
+		return null;
+	}
+
+	@Override
+	public Question privous(Integer sequence) {
+
+		return null;
 	}
 
 }
