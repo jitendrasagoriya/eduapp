@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jitendra.eduapp.domin.McqAnswer;
 import com.jitendra.eduapp.domin.Question;
 import com.jitendra.eduapp.enums.QuestionType;
 import com.jitendra.eduapp.service.impl.QuestionServiceImpl;
@@ -90,6 +91,16 @@ public class QuestionEndpoint {
 		return new ResponseEntity<>(questionService.save(question), HttpStatus.OK);
 	}
 	
+	@PostMapping("/mcq")
+	public ResponseEntity<?> addMcq(@RequestBody @Valid McqAnswer mcqAnswer) {
+		return new ResponseEntity<>(questionService.saveMcq(mcqAnswer), HttpStatus.OK);
+	}
+	
+	@PutMapping("/mcq")
+	public ResponseEntity<?> modifyMcq(@RequestBody @Valid McqAnswer mcqAnswer) {
+		return new ResponseEntity<>(questionService.saveMcq(mcqAnswer), HttpStatus.OK);
+	}
+	
 	@PutMapping
 	public ResponseEntity<?> update(@RequestBody @Valid Question question) {
 		return new ResponseEntity<>(questionService.save(question), HttpStatus.OK);
@@ -100,7 +111,10 @@ public class QuestionEndpoint {
 		return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
 	}
 	
-	
+	@DeleteMapping("mcq/{id}")
+	public ResponseEntity<?> deleteMcq( @PathVariable("id") Long id ) {
+		return new ResponseEntity<>(questionService.deleteMcq(id), HttpStatus.OK);
+	}
 	
 	
 	@GetMapping("download/csv")

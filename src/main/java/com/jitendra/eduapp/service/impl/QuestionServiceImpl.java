@@ -170,4 +170,20 @@ public class QuestionServiceImpl extends BaseService<Question> implements Questi
 		return null;
 	}
 
+	@Override
+	public McqAnswer saveMcq(McqAnswer mcqAnswer) {
+		return mcqDaoService.getRepository().saveAndFlush(mcqAnswer);
+	}
+
+	@Override
+	public Boolean deleteMcq(Long id) {
+		try {
+			mcqDaoService.getRepository().deleteById(id);
+			return Boolean.TRUE;
+		}catch (Exception e) {
+			logger.error("No such elenemt found. Id: "+id);
+			return Boolean.FALSE;
+		}
+	}
+
 }

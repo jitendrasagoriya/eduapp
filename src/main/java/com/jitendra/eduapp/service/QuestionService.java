@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.jitendra.eduapp.domin.McqAnswer;
 import com.jitendra.eduapp.domin.Question;
 import com.jitendra.eduapp.enums.QuestionType;
 /**
@@ -30,6 +31,10 @@ public interface QuestionService {
 	public Question update(Question question) throws Exception;
 	
 	public Integer getMax(Long id);
+	
+	public McqAnswer saveMcq(McqAnswer mcqAnswer);
+	
+	public Boolean deleteMcq(Long id);
 	
 	public Question next(Integer sequence);
 	
