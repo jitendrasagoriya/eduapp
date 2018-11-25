@@ -46,6 +46,23 @@ public class ChapterStatEndpoint {
 			return new ResponseEntity<String>("No such element found", HttpStatus.OK);
 		}
 	}
+	
+	@GetMapping("resum/{sid}/{cid}")
+	public ResponseEntity<?> getResume(@PathVariable("sid") Long sId, @PathVariable("cid") Long cId) {
+		ChapterStatPrimaryKey id = new ChapterStatPrimaryKey(sId, cId);
+		try {
+			ChapterStat chapterStat = service.getResume(sId,cId);
+			if (chapterStat == null || chapterStat.getId() == null || chapterStat.getId().getChapterId() == null
+					|| chapterStat.getId().getStudentId() == null) {
+				return new ResponseEntity<String>("No such element found", HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(chapterStat, HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity<String>("No such element found", HttpStatus.OK);
+		}
+	}
+	
 
 	@GetMapping
 	public ResponseEntity<?> get(Pageable pageable) {

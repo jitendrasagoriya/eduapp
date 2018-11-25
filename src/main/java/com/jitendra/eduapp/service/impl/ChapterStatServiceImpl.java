@@ -1,5 +1,6 @@
 package com.jitendra.eduapp.service.impl;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -24,6 +25,7 @@ public class ChapterStatServiceImpl implements ChapterStatService {
 
 	@Override
 	public ChapterStat save(ChapterStat chapterStat) {
+		chapterStat.setModifyDate(new Timestamp(System.currentTimeMillis()));
 		return service.getRepository().save(chapterStat);
 	}
 
@@ -61,6 +63,16 @@ public class ChapterStatServiceImpl implements ChapterStatService {
 			return null;
 		}
 
+	}
+
+	@Override
+	public ChapterStat getResume(Long studentId ) {		 
+		return service.getResume(studentId);
+	}
+
+	@Override
+	public ChapterStat getResume(Long studentId, Long subjectId) {
+		return service.getResume(studentId,subjectId);
 	}
 
 }

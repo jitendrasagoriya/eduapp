@@ -25,34 +25,37 @@ public class ChapterStat implements Serializable {
 	@EmbeddedId
 	private ChapterStatPrimaryKey id;	
 	
-	@Column(name="MODIFYDATE")
+	@Column(name="MODIFYDATE",nullable=true)
 	private Timestamp modifyDate;
 	
-	@Column(name="PERSANTAGE")
+	@Column(name="PERSANTAGE",nullable=true)
 	private Integer completePersantage;
 	
-	@Column(name="RESUME")
+	@Column(name="RESUME",nullable=true)
 	private Boolean resume;
 	
-	@Column(name="QATTEMPT")
+	@Column(name="QATTEMPT",nullable=true)
 	private Integer qAttempt;
 	
-	@Column(name="QINCORRECT")
+	@Column(name="QINCORRECT",nullable=true)
 	private Integer qIncorrect;
 	
-	@Column(name="QCORRECT")
+	@Column(name="QCORRECT",nullable=true)
 	private Integer qCorrect;
 	
 	
-	@Column(name="VWATCHED")
+	@Column(name="VWATCHED",nullable=true)
 	private Integer vWatched;
 	
-	@Column(name="CKNOWN")
+	@Column(name="CKNOWN",nullable=true)
 	private Integer cKnown;
 	
-	@Column(name="TIMETAKEN")
+	@Column(name="TIMETAKEN",nullable=true)
 	private Integer timeTaken;
 	
+	
+	@Column(name="SUBJECTID",nullable=true)
+	private Long subjectId;
 
 	public ChapterStat() {
 		super();
@@ -233,6 +236,22 @@ public class ChapterStat implements Serializable {
 	public void setTimeTaken(Integer timeTaken) {
 		this.timeTaken = timeTaken;
 	}
+	
+	
+
+	/**
+	 * @return the subjectId
+	 */
+	public Long getSubjectId() {
+		return subjectId;
+	}
+
+	/**
+	 * @param subjectId the subjectId to set
+	 */
+	public void setSubjectId(Long subjectId) {
+		this.subjectId = subjectId;
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -249,6 +268,7 @@ public class ChapterStat implements Serializable {
 		result = prime * result + ((qCorrect == null) ? 0 : qCorrect.hashCode());
 		result = prime * result + ((qIncorrect == null) ? 0 : qIncorrect.hashCode());
 		result = prime * result + ((resume == null) ? 0 : resume.hashCode());
+		result = prime * result + ((subjectId == null) ? 0 : subjectId.hashCode());
 		result = prime * result + ((timeTaken == null) ? 0 : timeTaken.hashCode());
 		result = prime * result + ((vWatched == null) ? 0 : vWatched.hashCode());
 		return result;
@@ -306,6 +326,11 @@ public class ChapterStat implements Serializable {
 				return false;
 		} else if (!resume.equals(other.resume))
 			return false;
+		if (subjectId == null) {
+			if (other.subjectId != null)
+				return false;
+		} else if (!subjectId.equals(other.subjectId))
+			return false;
 		if (timeTaken == null) {
 			if (other.timeTaken != null)
 				return false;
@@ -326,7 +351,8 @@ public class ChapterStat implements Serializable {
 	public String toString() {
 		return "ChapterStat [id=" + id + ", modifyDate=" + modifyDate + ", completePersantage=" + completePersantage
 				+ ", resume=" + resume + ", qAttempt=" + qAttempt + ", qIncorrect=" + qIncorrect + ", qCorrect="
-				+ qCorrect + ", vWatched=" + vWatched + ", cKnown=" + cKnown + ", timeTaken=" + timeTaken + "]";
+				+ qCorrect + ", vWatched=" + vWatched + ", cKnown=" + cKnown + ", timeTaken=" + timeTaken
+				+ ", subjectId=" + subjectId + "]";
 	}
 	
 	
