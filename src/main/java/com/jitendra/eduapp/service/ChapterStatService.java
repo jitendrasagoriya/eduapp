@@ -23,5 +23,9 @@ public interface ChapterStatService {
 	public List<ChapterStat> getAll();
 
 	public ChapterStat getById(ChapterStatPrimaryKey id);
+	
+	public ChapterStat getResume(Long studentId );
+	
+	public ChapterStat getResume(Long studentId,Long subjectId);
 
 }
